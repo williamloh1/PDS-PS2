@@ -4,27 +4,27 @@ for(i in 1:7) {
 }
 #Problem 2
 set.seed(14)
-test.sum = TRUE
-save.count = 0
+num.rolls <- c()
 for (i in 1:1000) {
   dice.rolls <- sample(1:6,2,replace=TRUE)
-  save.count = i
-  print(dice.rolls)
   sum.dice <- sum(dice.rolls)
-  if(sum.dice>=8 & sum.dice<=12 & test.sum == TRUE) {
-    print("end")
+  die.casts <- 1
+  if(sum.dice>=8 & sum.dice<=12 & i == 1) {
+    num.rolls <- c(num.rolls,die.casts)
     break
   }
-  if(i==1) {
-    test.sum = FALSE
-  }
   if(i!=1 & test.sum==FALSE) {
-    if(dice.rolls[1]==2 | dice.rolls[1]==6 | dice.rolls[2]==2 | dice.rolls[2]==6) {
-      break
+    repeat {
+      dice.rolls2 <- sample(1:6,2,replace=TRUE)
+      die.casts <- die.casts+1
+      if(dice.rolls2[1]==2 | dice.rolls2[1]==6 | dice.rolls2[2]==2 | dice.rolls2[2]==6) {
+        num.rolls<- c(num.rolls,die.casts)
+        break
+      }
     }
   }
 }
-print(save.count)
+print(mean(num.rolls))
 
 #Problem 3
 GSS<-read.csv("~/Downloads/GSS-data.csv")
